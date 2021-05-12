@@ -18,6 +18,109 @@ $ open https://travis-ci.org
 - [ok] 7. Выполнить инструкцию учебного материала
 - [ok] 8. Составить отчет и отправить ссылку личным сообщением в **Slack**
 
+## Tutorial
+
+```sh
+$ export GITHUB_USERNAME=<имя_пользователя>    #присваиваем <имя_пользователя> в переменную GITHUB_USERNAME
+$ export GITHUB_TOKEN=<полученный_токен>      #присваиваем <полученный_токен> в переменную GITHUB_TOKEN
+```
+
+```sh
+$ cd ${GITHUB_USERNAME}/workspace    #спускаемся в workspace
+$ pushd .                           #добавляем в стек текущий каталог
+$ source scripts/activate          #выполняем скрипт
+```
+
+```sh
+$ \curl -sSL https://get.rvm.io | bash -s -- --ignore-dotfiles    #скачиваем файл по ссылке | игноририруем скрытые файлы
+$ echo "source $HOME/.rvm/scripts/rvm" >> scripts/activate       #записываем файл в скрипт-файл
+$ . scripts/activate                                            #выполняем скрипт
+$ rvm autolibs disable                                         #отключеним дополнительные действия
+$ rvm install ruby-2.4.2                                      #устанавливаем ruby 2.4.2
+$ rvm use 2.4.2 --default                                    #используем версию ruby 2.4.2 по умолчанию
+$ gem install travis                                        #устанавливаем travis
+```
+
+```sh
+$ git clone https://github.com/${GITHUB_USERNAME}/lab03 projects/lab04   #клонируем репозиторий из lab03 в директорию projects/lab04
+$ cd projects/lab04                                                     #переходим директорию projects/lab04
+$ git remote remove origin                                             #удаляем старую ссылку репозитория
+$ git remote add origin https://github.com/${GITHUB_USERNAME}/lab04   #добавляем ссылку репозитория в управление репозиториями
+```
+
+```sh
+$ cat > .travis.yml <<EOF            #открываем файл и пишем данные языка программирования от EOF до EOF
+language: cpp
+EOF
+```
+
+```sh
+$ cat >> .travis.yml <<EOF           #открываем файл .travis.yml и пишем данные скрипта от EOF до EOF
+
+script:
+- cmake -H. -B_build -DCMAKE_INSTALL_PREFIX=_install
+- cmake --build _build
+- cmake --build _build --target install
+EOF
+```
+
+```sh
+$ cat >> .travis.yml <<EOF           #открываем файл .travis.yml и пишем данные от EOF до EOF
+
+addons:
+  apt:
+    sources:
+      - george-edison55-precise-backports
+    packages:
+      - cmake
+      - cmake-data
+EOF
+```
+
+```sh
+$ travis login --github-token ${GITHUB_TOKEN}   #авторизируемся на travis
+```
+
+```sh
+$ travis lint                         #проверяем .travis.yml для любых проблем, которые он может обнаружить
+```
+
+```sh
+$ ex -sc '1i|<фрагмент_вставки_значка>' -cx README.md    #вставляем Markdown значок от сервиса Travis CI
+```
+
+```sh
+$ git add .travis.yml         #добавляем .travis.yml
+$ git add README.md            #добавляем README.md
+$ git commit -m "added CI"      #закомментируем их
+$ git push origin main           #отправляем данные на сервер, в удаленный репозиторий main
+```
+
+```sh
+$ travis lint          #проверяем .travis.yml для любых проблем, которые он может обнаружить
+$ travis accounts       #посмотрим аккаунты и их статус
+$ travis sync            #синхронизируем с github
+$ travis repos            #посмотрим список репозиториев
+$ travis enable           #делаем проект доступным
+$ travis whatsup          #посмотрим список последних сборок
+$ travis branches        #посмотрим список последних сборок всех веток
+$ travis history        #посмотрим историю сборок
+$ travis show          #посмотрим сборку
+```
+
+## Report
+
+```sh
+$ popd                                                                           #удаляем из стека текущий каталог
+$ export LAB_NUMBER=04                                                          #присваиваем 04 в переменную LAB_NUMBER
+$ git clone https://github.com/tp-labs/lab${LAB_NUMBER} tasks/lab${LAB_NUMBER} #клонируем из ссылки в директорию (в наше случае-tasks/lab04)
+$ mkdir reports/lab${LAB_NUMBER}                                              #создаем директорию (в наше случае- lab04)                                      
+$ cp tasks/lab${LAB_NUMBER}/README.md reports/lab${LAB_NUMBER}/REPORT.md     #спускаемся в директорию (в наше случае- lab04)
+$ cd reports/lab${LAB_NUMBER}                                               #копируем из одной директории в другую
+$ edit REPORT.md                                                           #редактируем REPORT.md
+$ gist REPORT.md                                                          #сохраняем REPORT.md
+```
+
 ## Homework
 
 Вы продолжаете проходить стажировку в "Formatter Inc." (см [подробности](https://github.com/tp-labs/lab03#Homework)).
