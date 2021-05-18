@@ -114,7 +114,7 @@ $ travis show          #посмотрим сборку
 $ popd                                                                           #удаляем из стека текущий каталог
 $ export LAB_NUMBER=04                                                          #присваиваем 04 в переменную LAB_NUMBER
 $ git clone https://github.com/tp-labs/lab${LAB_NUMBER} tasks/lab${LAB_NUMBER} #клонируем из ссылки в директорию (в наше случае-tasks/lab04)
-$ mkdir reports/lab${LAB_NUMBER}                                              #создаем директорию (в наше случае- lab04)                                      
+$ mkdir reports/lab${LAB_NUMBER}                                              #создаем в директории reports папку (в нашем случае- lab04)                                      
 $ cp tasks/lab${LAB_NUMBER}/README.md reports/lab${LAB_NUMBER}/REPORT.md     #спускаемся в директорию (в наше случае- lab04)
 $ cd reports/lab${LAB_NUMBER}                                               #копируем из одной директории в другую
 $ edit REPORT.md                                                           #редактируем REPORT.md
