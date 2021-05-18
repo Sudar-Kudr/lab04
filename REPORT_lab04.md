@@ -4,7 +4,7 @@
 Данная лабораторная работа посвещена изучению систем непрерывной интеграции на примере сервиса **Travis CI**
 
 ```sh
-$ open https://travis-ci.org
+$ open https://travis-ci.org 
 ```
 
 ## Tasks
